@@ -33,11 +33,11 @@ CREATE TABLE boletas (
 );
 
 INSERT INTO metodos_pago (nombre_metodo_pago) VALUES 
-('Efectivo'), 
-('Tarjeta de Crédito'), 
-('Transferencia');
+('efectivo'), 
+('tarjeta de credito'), 
+('transferencia');
 
 INSERT INTO metodos_envio (tipo_envio, costo_envio) VALUES 
-('Retiro en Tienda', 0), 
-('Envío a Domicilio Express', 4500), 
-('Envío Estándar', 2990);
+('retiro en tiendo', 0), 
+('se lo lleva a la casa una minoria', 999), 
+('delivery estandar', 2990);
