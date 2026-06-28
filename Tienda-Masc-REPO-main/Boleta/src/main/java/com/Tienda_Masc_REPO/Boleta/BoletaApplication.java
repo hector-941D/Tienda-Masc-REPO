@@ -9,5 +9,4 @@ public class BoletaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BoletaApplication.class, args);
 	}
-
 }
