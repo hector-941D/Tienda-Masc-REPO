@@ -37,7 +37,7 @@ public class MetodoPagoController {
             
             return new ResponseEntity<>(nuevo, HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error al crear método de pago: " + e.getMessage(), 
+            return new ResponseEntity<>("Error al crear metodo de pago: " + e.getMessage(), 
                                         HttpStatus.BAD_REQUEST);
         }
     }
@@ -48,7 +48,7 @@ public class MetodoPagoController {
             MetodoPagoDTO metodoPagos = metodoPagoService.obtenerPorId(idMetodoPago);
             return new ResponseEntity<>(metodoPagos, HttpStatus.OK);
         }catch(RuntimeException e){
-            return new ResponseEntity<>("No se encontró el metodo de pago", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("No se encontro metodo de pago", HttpStatus.NOT_FOUND);
         }
     }
 }
