@@ -34,7 +34,7 @@ public class MetodoEnvioController {
             MetodoEnvioDTO nuevo = metodoEnvioService.guardar(metodoEnvio);
             return new ResponseEntity<>(nuevo, HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error al crear método de envío: " + e.getMessage(), 
+            return new ResponseEntity<>("Error al crear metodo de evio: " + e.getMessage(), 
                                          HttpStatus.BAD_REQUEST);
         }
     }
@@ -45,7 +45,7 @@ public class MetodoEnvioController {
             MetodoEnvioDTO metodoEnvios = metodoEnvioService.obtenerPorId(idMetodoEnvio);
             return new ResponseEntity<>(metodoEnvios, HttpStatus.OK);
         }catch(RuntimeException e){
-            return new ResponseEntity<>("No se encontró el metodo de envio", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("No se encontro el metodo de envio", HttpStatus.NOT_FOUND);
         }
     }
 }
