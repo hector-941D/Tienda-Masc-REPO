@@ -21,7 +21,7 @@ services:
 
 
  eureka-server:
-   build: ./Eureka
+   build: ./eureka
    container_name: eureka-server
    ports:
      - "8761:8761"
@@ -36,7 +36,7 @@ services:
 
 
  api-gateway:
-   build: ./Gateway
+   build: ./gateway
    container_name: api-gateway
    ports:
      - "8080:8080"
