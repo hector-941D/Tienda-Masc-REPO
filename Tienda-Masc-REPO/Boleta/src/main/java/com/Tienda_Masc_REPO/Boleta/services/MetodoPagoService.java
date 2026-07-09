@@ -22,27 +22,51 @@ public class MetodoPagoService {
     private MetodoPagoRepository metodoDePagorepository;
 
     public List<MetodoPagoDTO> obtenerTodos() {
-        List<MetodoPagoDTO> listaDto = new ArrayList<>();
-        for (MetodoPago metodopago : metodoDePagorepository.findAll()) {
-            listaDto.add(convertirADTO(metodopago));
-        }
+        try{
+            List<MetodoPagoDTO> listaDto = new ArrayList<>();
+            for (MetodoPago metodopago : metodoDePagorepository.findAll()) {
+                listaDto.add(convertirADTO(metodopago));
+            }
+        
+        log.info("Obteniendo todos los metodos de pago");
         return listaDto;
+        } catch (Exception e) {
+            log.error("Error al obtener los metodos de pago");
+            throw e;
+        }
     }
 
     public MetodoPagoDTO guardar(MetodoPago metodopago) {
-        MetodoPago guardado = metodoDePagorepository.save(metodopago);
-        return convertirADTO(guardado);
-    }
+        try {
+            MetodoPago guardado = metodoDePagorepository.save(metodopago);
+            log.info("Nuevo metodo de pago guardado");
+            return convertirADTO(guardado);
+        } catch (Exception e){
+            log.error("Error al guardar nuevo metodo de pago!");
+            throw e;
+        }    
+    }   
 
     public MetodoPagoDTO convertirADTO(MetodoPago metodopago) {
-        MetodoPagoDTO metodoPagoDTO = new MetodoPagoDTO();
-        metodoPagoDTO.setIdMetodoPago(metodopago.getIdMetodoPago());
-        metodoPagoDTO.setNombreMetodoPago(metodopago.getNombreMetodoPago());
-        return metodoPagoDTO;
+        try {
+            MetodoPagoDTO metodoPagoDTO = new MetodoPagoDTO();
+            metodoPagoDTO.setIdMetodoPago(metodopago.getIdMetodoPago());
+            metodoPagoDTO.setNombreMetodoPago(metodopago.getNombreMetodoPago());
+            return metodoPagoDTO;
+        } catch (Exception e) {
+            log.error("Error al convertir a DTO en metodo de pago!");
+            throw e;
+        }    
     }
 
     public MetodoPagoDTO obtenerPorId(Integer idMetodoPago){
-        MetodoPago metodoPago = metodoDePagorepository.findById(idMetodoPago).orElseThrow(() -> new RuntimeException("Metodo de pago no encontrado"));
-        return convertirADTO(metodoPago);
+        try {
+            MetodoPago metodoPago = metodoDePagorepository.findById(idMetodoPago).orElseThrow(() -> new RuntimeException("Metodo de pago no encontrado"));
+            log.info("Obteniendo metodo de pago con id: {}", idMetodoPago);
+            return convertirADTO(metodoPago);
+        } catch (Exception e){
+            log.warn("Error al obtener metodo de pago con id: {}", idMetodoPago);
+            throw e;
+        }
     }
 }
