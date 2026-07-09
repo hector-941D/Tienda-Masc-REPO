@@ -1,19 +1,19 @@
 CREATE TABLE metodos_pago (
     id_metodo_pago INT AUTO_INCREMENT NOT NULL,
-    nombre_metodo_pago VARCHAR(255) NOT NULL,
+    nombre_metodo_pago VARCHAR(70) NOT NULL,
     PRIMARY KEY (id_metodo_pago)
 );
 
 CREATE TABLE metodos_envio (
     id_metodo_envio INT AUTO_INCREMENT NOT NULL,
-    tipo_envio VARCHAR(255) NOT NULL,
+    tipo_envio VARCHAR(70) NOT NULL,
     costo_envio INT NOT NULL,
     PRIMARY KEY (id_metodo_envio)
 );
 
 CREATE TABLE boletas (
     id_boleta INT AUTO_INCREMENT NOT NULL,
-    numero_folio VARCHAR(255) NOT NULL,
+    numero_folio VARCHAR(70) NOT NULL,
     fecha_emision DATE NOT NULL,
     hora_emision TIME NOT NULL,
     monto_neto INT NOT NULL,
@@ -33,11 +33,11 @@ CREATE TABLE boletas (
 );
 
 INSERT INTO metodos_pago (nombre_metodo_pago) VALUES 
-('Efectivo'), 
-('Tarjeta de Crédito'), 
-('Transferencia');
+('efectivo'), 
+('tarjeta de credito'), 
+('transferencia');
 
 INSERT INTO metodos_envio (tipo_envio, costo_envio) VALUES 
-('Retiro en Tienda', 0), 
-('Envío a Domicilio Express', 4500), 
-('Envío Estándar', 2990);
+('retiro en tiendo', 0), 
+('se lo lleva a la casa una minoria', 999), 
+('delivery estandar', 2990);

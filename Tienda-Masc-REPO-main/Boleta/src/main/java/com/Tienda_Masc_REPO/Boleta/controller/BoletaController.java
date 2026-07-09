@@ -50,7 +50,7 @@ public class BoletaController {
             return new ResponseEntity<>(boletaConLinks, HttpStatus.OK);
 
         }catch(RuntimeException e){
-            return new ResponseEntity<>("No se encontró la boleta", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("No se encontro la boleta", HttpStatus.NOT_FOUND);
         }
     }
 
@@ -63,7 +63,7 @@ public class BoletaController {
             return new ResponseEntity<>(boletaConLinks, HttpStatus.CREATED);
 
         } catch(Exception e) {
-            return new ResponseEntity<>("Error al procesar la venta: " + e.getMessage(), 
+            return new ResponseEntity<>("error al crear la boleta: " + e.getMessage(), 
                                         HttpStatus.BAD_REQUEST);
         }
     }
