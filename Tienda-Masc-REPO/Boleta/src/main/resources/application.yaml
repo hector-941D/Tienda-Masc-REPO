@@ -1,20 +1,23 @@
 server:
-  port: 0 
+  port: 0
+  forward-headers-strategy: framework
 
 springdoc:
   api-docs:
-    path: /boletas/api-docs 
-  hateoas:
-    enabled: false 
+    path: /boletas/api-docs
+  packages-to-scan: com.Tienda_Masc_REPO.Boleta.controller;
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/ 
+      defaultZone: ${EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE:http://localhost:8761/eureka/}
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${random.value}
 
 spring:
   application:
-    name: boletas 
+    name: boletas
   flyway:
     enabled: 'true'
     baseline-on-migrate: 'true'
@@ -22,7 +25,17 @@ spring:
     show-sql: 'true'
   profiles:
     active: dev
-  
+  mvc:
+    cors:
+      mappings:
+        "/**":
+          allowed-origin-patterns: "*"
+          allowed-methods: GET, POST, PUT, DELETE, PATCH, OPTIONS
+          allowed-headers: "*"
+          exposed-headers: "*"
+          allow-credentials: false
+          max-age: 3600
+
 ---
 
 spring:
@@ -30,10 +43,10 @@ spring:
     activate:
       on-profile: dev
   datasource:
+    url: jdbc:mysql://${DATABASE_HOST:localhost}:3306/db_tienda_mascotas_dev?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
     username: root
-    url: jdbc:mysql://localhost:3306/db_tienda_masc_boletas_dev?createDatabaseIfNotExist=true
-    driverClassName: com.mysql.cj.jdbc.Driver
     password: ''
+    driverClassName: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
@@ -46,7 +59,7 @@ spring:
       on-profile: test
   datasource:
     username: root
-    url: jdbc:mysql://localhost:3306/db_tienda_masc_boletas_test?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/db_tienda_mascotas_test?createDatabaseIfNotExist=true
     driverClassName: com.mysql.cj.jdbc.Driver
     password: ''
   jpa:
@@ -61,7 +74,7 @@ spring:
       on-profile: prod
   datasource:
     username: root
-    url: jdbc:mysql://localhost:3306/db_tienda_masc_boletas_prod?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/db_tienda_mascotas_prod?createDatabaseIfNotExist=true
     driverClassName: com.mysql.cj.jdbc.Driver
     password: ''
   jpa:
