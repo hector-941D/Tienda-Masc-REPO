@@ -22,28 +22,47 @@ public class MetodoEnvioService {
     private MetodoEnvioRepository metodoEnvioRepository;
 
     public List<MetodoEnvioDTO> obtenerTodos() {
-        List<MetodoEnvioDTO> listaDTO = new ArrayList<>();
-        for (MetodoEnvio metodoenvio : metodoEnvioRepository.findAll()) {
-            listaDTO.add(convertirADTO(metodoenvio));
+        try {
+            List<MetodoEnvioDTO> listaDTO = new ArrayList<>();
+            for (MetodoEnvio metodoenvio : metodoEnvioRepository.findAll()) {
+                listaDTO.add(convertirADTO(metodoenvio));
+            }
+            log.info("Obteniendo todos los metodos de envio. Total: {}", listaDTO.size());
+            return listaDTO;
+        } catch (Exception e) {
+            log.error("Error al intentar obtener los metodos de envio");
+            throw e; 
         }
-        return listaDTO;
     }
 
     public MetodoEnvioDTO guardar(MetodoEnvio metodoenvio) {
-        MetodoEnvio metodoEnvioGuardado = metodoEnvioRepository.save(metodoenvio);
-        return convertirADTO(metodoEnvioGuardado);
+        try {
+            MetodoEnvio metodoEnvioGuardado = metodoEnvioRepository.save(metodoenvio);
+            log.info("Metodo de envio guardado con exito! id asignado: {}", metodoEnvioGuardado.getIdMetodoEnvio());
+            return convertirADTO(metodoEnvioGuardado);
+        } catch (Exception e) {
+            log.error("Error al intentar guardar el metodo de envio: {}", metodoenvio.getTipoEnvio());
+            throw e;
+        }
+    }
+
+    public MetodoEnvioDTO obtenerPorId(Integer idMetodoEnvio) {
+        try {
+            MetodoEnvio metodoEnvio = metodoEnvioRepository.findById(idMetodoEnvio)
+                    .orElseThrow(() -> new RuntimeException("Metodo de envio no encontrado"));
+            
+            log.info("Buscando metodo de envio con id: {}", idMetodoEnvio);
+            return convertirADTO(metodoEnvio);
+        } catch (Exception e) {
+            log.error("Error al buscar el metodo de envio con id: {}", idMetodoEnvio);
+            throw e;
+        }
     }
 
     public MetodoEnvioDTO convertirADTO(MetodoEnvio metodoenvio) {
         MetodoEnvioDTO metodoEnvioDTO = new MetodoEnvioDTO();
         metodoEnvioDTO.setIdMetodoEnvio(metodoenvio.getIdMetodoEnvio());
         metodoEnvioDTO.setTipoEnvio(metodoenvio.getTipoEnvio());
-
         return metodoEnvioDTO;
-    }
-
-    public MetodoEnvioDTO obtenerPorId(Integer idMetodoEnvio){
-        MetodoEnvio metodoEnvio = metodoEnvioRepository.findById(idMetodoEnvio).orElseThrow(() -> new RuntimeException("Metodo de envio no encontrado"));
-        return convertirADTO(metodoEnvio);
     }
 }

@@ -78,9 +78,9 @@ public class BoletaValidaciones {
             productoExternoDto.setIdProducto(idProducto);
             productoExternoDto.setNombreProductos("no se a podido conectar con producto");
             productoExternoDto.setPrecio(0);
-            productoExternoDto.setEspecie(null);
-            productoExternoDto.setMarca(null);
-            productoExternoDto.setTipo(null);
+            productoExternoDto.setEspecie("no se a podido conectar con producto");
+            productoExternoDto.setMarca("no se a podido conectar con producto");
+            productoExternoDto.setTipo("no se a podido conectar con producto");
             return productoExternoDto;
         }
     }
