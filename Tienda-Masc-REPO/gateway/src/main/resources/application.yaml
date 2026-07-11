@@ -1,0 +1,39 @@
+server:
+    port: 8080
+
+spring:
+    application:
+    name: gateway
+
+    cloud:
+        gateway:
+            server:
+                webmvc:
+            routes:
+    - id: boleta-service
+    uri: http://boletas/api/v1/boletas/
+    predicates:
+    - Path=/api/v1/boletas/**
+
+    - id: cliente-service
+    uri: http://clientes/api/v1/clientes/
+    predicates:
+    - Path=/api/v1/clientes/**
+
+    - id: producto-service
+    uri: http://productos/api/v1/productos/
+    predicates:
+    - Path=/api/v1/productos/**
+
+springdoc:
+    swagger-ui:
+    path: /swagger-ui/index.html
+    urls:
+    - name: Microservicio cliente
+    url: /cliente/api-docs}
+    - name: Microservicio boleta
+    url: /bolera/api-docs}
+    - name: Microservicio producto
+    url: /producto/api-docs}
+api-docs:
+
