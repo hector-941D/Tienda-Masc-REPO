@@ -6,13 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Tienda_Masc_REPO.Producto.DTO.MarcaDTO;
-import com.Tienda_Masc_REPO.Producto.Model.Especie;
 import com.Tienda_Masc_REPO.Producto.Model.Marca;
 import com.Tienda_Masc_REPO.Producto.Model.Producto;
 import com.Tienda_Masc_REPO.Producto.Repository.MarcaRepository;
 
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

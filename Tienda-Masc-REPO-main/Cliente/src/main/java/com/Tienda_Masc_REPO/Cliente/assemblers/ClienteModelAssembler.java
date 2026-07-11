@@ -7,18 +7,20 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
-import com.Tienda_Masc_REPO.Cliente.ClienteDTO;
+import com.Tienda_Masc_REPO.Cliente.Controller.ClienteController;
+import com.Tienda_Masc_REPO.Cliente.DTO.ClienteDTO;
+
 
 @Component
 public class ClienteModelAssembler implements RepresentationModelAssembler<ClienteDTO, EntityModel<ClienteDTO>> {
 
     @Override
     public EntityModel<ClienteDTO> toModel(ClienteDTO clienteDTO) {
-        Integer idBoleta = clienteDTO.getIdBoleta(); 
+        Integer idCliente = clienteDTO.getIdCliente(); 
 
         return EntityModel.of(clienteDTO,
-                linkTo(methodOn(ClienteController.class).clientePorId(clienteDTO.getIdCliente())).withSelfRel(),
-                linkTo(methodOn(BoletaController.class).boletaPorId(idBoleta)).withRel("boletas")
+                linkTo(methodOn(ClienteController.class).obtenerPorId(idCliente)).withSelfRel(),
+                linkTo(methodOn(ClienteController.class).listarTodos()).withRel("clientes")
         );
     }
 }
