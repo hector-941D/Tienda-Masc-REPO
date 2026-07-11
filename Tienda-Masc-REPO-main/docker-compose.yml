@@ -65,7 +65,7 @@ services:
        condition: service_healthy
   
  producto-service:
-   build: ./producto
+   build: ./Producto
    container_name: producto-service
    environment:
      SPRING_PROFILES_ACTIVE: dev
@@ -81,7 +81,7 @@ services:
        condition: service_healthy
 
  cliente-service:
-   build: ./cliente
+   build: ./Cliente
    container_name: cliente-service
    environment:
      SPRING_PROFILES_ACTIVE: dev
