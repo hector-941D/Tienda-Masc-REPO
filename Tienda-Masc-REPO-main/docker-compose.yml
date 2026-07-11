@@ -80,6 +80,22 @@ services:
      eureka-server:
        condition: service_healthy
 
+ cliente-service:
+   build: ./cliente
+   container_name: cliente-service
+   environment:
+     SPRING_PROFILES_ACTIVE: dev
+     EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-server:8761/eureka/
+     DATABASE_HOST: mariadb-db
+     GATEWAY_URL: http://localhost:8080
+   networks:
+     - network-tienda-masc-repo-main
+   depends_on:
+     mariadb-db:
+       condition: service_healthy
+     eureka-server:
+       condition: service_healthy
+
 networks:
  network-tienda-masc-repo-main:
    driver: bridge
