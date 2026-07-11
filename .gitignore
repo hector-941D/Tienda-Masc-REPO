@@ -1,0 +1,15 @@
+# Ignorar carpetas de compilación de Java en cualquier nivel
+**/target/
+
+# Ignorar configuraciones de VS Code y editores
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Ignorar archivos temporales del sistema
+.DS_Store
+Thumbs.db
